@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">
+        Dependency Injection Lifetime
+    </h1>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tipo de Serviço</th>
+            <th>ID da <strong> Primeira </strong> Instância</th>
+            <th>ID da <strong> Segunda </strong>Instância</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="background-color: darksalmon"> Transient </td>
+            <td style="background-color: darksalmon"> @ViewBag.transient1 </td>
+            <td style="background-color: darksalmon"> @ViewBag.transient2 </td>
+        </tr>
+        <tr>
+            <td>Scoped</td>
+            <td>@ViewBag.scoped1</td>
+            <td>@ViewBag.scoped2</td>
+        </tr>
+        <tr>
+            <td style="background-color: aquamarine"> Singleton </td>
+            <td style="background-color: aquamarine"> @ViewBag.singleton1 </td>
+            <td style="background-color: aquamarine"> @ViewBag.singleton2 </td>
+        </tr>
+    </tbody>
+</table>
+
+<h1 class="display-4">Conclusão</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr style="color: white; background-color: royalblue">
+            <th>Tipo de Serviço</th>
+            <th>Na mesma requisição HTTP</th>
+            <th>Através de requisições HTTP diferentes</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="font-weight: bold;"> Transient  </td>
+            <td> Nova Instância </td>
+            <td> Nova Instância </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Uma nova instância é fornecida sempre que uma instância é solicitada, seja no escopo da mesma solicitação HTTP ou em diferentes solicitações HTTP.">
+                    <strong>?</strong>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;"> Scoped </td>
+            <td> Mesma instância </td>
+            <td> Nova Instância </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Obtemos a mesma instância dentro do escopo de uma determinada solicitação HTTP, mas uma nova instância em diferentes solicitações HTTP.">
+                    <strong>?</strong>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;"> Singleton </td>
+            <td> Mesma instância </td>
+            <td> Mesma instância </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="Existe apenas uma única instância. Uma instância é criada, quando o serviço é solicitado pela primeira vez e essa instância única será usada por todas as solicitações HTTP subsequentes em todo o aplicativo.">
+                    <strong>?</strong>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
